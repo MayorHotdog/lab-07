@@ -2,6 +2,10 @@ package com.example.lab_7
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -13,6 +17,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
 @Composable
@@ -51,7 +57,9 @@ fun DriversScreen(navController: NavController) {
                     }
                 },
                 modifier = Modifier.testTag("addDriverButton")
-            ) { }
+            ) {
+                Text("Add Driver")
+            }
         }
         Row() {
             Button(
@@ -61,6 +69,16 @@ fun DriversScreen(navController: NavController) {
                 modifier = Modifier.testTag("clearDrivers")
             ) {
                 Text("Clear Driver List")
+            }
+        }
+        LazyColumn {
+            items(drivers) { driver ->
+                Spacer(modifier = Modifier.height(12.dp))
+
+                Text(
+                    text = driver,
+                    fontSize = 24.sp
+                )
             }
         }
     }
